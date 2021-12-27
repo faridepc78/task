@@ -1,0 +1,17 @@
+label {
+    display: inline-block;
+    margin-top: 20px;
+}
+
+label.error {
+    color: red !important;
+    font-size: 14px !important;
+    display: block !important;
+    margin-top: 5px !important;
+}
+
+input.error, textarea.error {
+    border: 1px dashed red !important;
+    font-weight: 300 !important;
+    color: red !important;
+}
