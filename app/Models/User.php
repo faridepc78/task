@@ -5,6 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+/**
+ * @method static whereRole(string $USER)
+ */
 class User extends Authenticatable
 {
     use HasFactory;
@@ -48,5 +51,10 @@ class User extends Authenticatable
     public function getProfileAttribute()
     {
         return getGravatar($this->email);
+    }
+
+    public function admin()
+    {
+        return $this->role == self::ADMIN;
     }
 }

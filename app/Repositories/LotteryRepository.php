@@ -55,4 +55,17 @@ class LotteryRepository
             ->whereCode($code)
             ->firstOrFail();
     }
+
+    public function existsUsers()
+    {
+        return Lottery::query()
+            ->rightJoin('users', 'users.id', '=', 'lotteries.user_id')
+            ->select('users.id','users.role')
+            ->where('users.role', '=', User::USER)
+            ->whereNotIn('users.id', function ($query) {
+                $query->select('lotteries.user_id')
+                ->from('lotteries');
+            })
+            ->count();
+    }
 }

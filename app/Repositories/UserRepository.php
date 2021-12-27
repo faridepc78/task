@@ -57,6 +57,7 @@ class UserRepository
     public function random()
     {
         return User::query()
+            ->whereRole(User::USER)
             ->inRandomOrder()
             ->select('id')
             ->first();

@@ -54,7 +54,13 @@
             <div class="collapse navbar-collapse" id="navigation-example">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="{{route('home')}}">صفحه اصلی</a></li>
-                    <li><a href="{{route('login')}}">ورود</a></li>
+                    @guest()
+                        <li><a href="{{route('login')}}">ورود</a></li>
+                    @else
+                        @if (auth()->user()->admin())
+                            <li><a target="_blank" href="{{route('dashboard')}}">پنل مدیریت</a></li>
+                        @endif
+                    @endguest
 
                     @auth()
                         <li><a href="{{route('logout')}}">خروج</a></li>

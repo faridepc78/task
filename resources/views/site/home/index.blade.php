@@ -33,7 +33,7 @@
                                 <div class="card-tools">
 
                                     <form id="dateForm" method="get"
-                                          action="{{route('lotteries.index')}}">
+                                          action="{{route('home')}}">
                                         <div class="input-group input-group-sm" style="width: 300px;">
                                             <input readonly id="date" value="{{request()->input('date')}}" type="text"
                                                    name="date"
@@ -50,7 +50,7 @@
                                     <br>
 
                                     <form id="filterForm" method="get"
-                                          action="{{route('lotteries.index')}}">
+                                          action="{{route('home')}}">
                                         <div class="input-group input-group-sm" style="width: 300px;">
                                             <input onkeyup="this.value=removeSpaces(this.value)" id="search"
                                                    value="{{request()->input('search')}}" type="text"
@@ -163,7 +163,7 @@
 
         $('#filterForm').on('submit', function (e) {
             e.preventDefault();
-            var base_url = window.location.href;
+            var base_url = '{{cleanExtraQueryString(['search'],null,'home')}}';
             var route = "{{route('home')}}";
             var search = $('#search').val();
 

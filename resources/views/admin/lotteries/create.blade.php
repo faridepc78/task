@@ -35,6 +35,14 @@
                             <h3 class="card-title">ایجاد قرعه کشی ها</h3>
                         </div>
 
+                        <br>
+
+                        @if ($result==false)
+                            <div class="alert alert-warning text-center">
+                                <p>کاربر جدیدی برای شرکت در قرعه کشی نداریم</p>
+                            </div>
+                        @endif
+
                         <form id="store_lottery_form" action="{{route('lotteries.store')}}"
                               method="post">
 

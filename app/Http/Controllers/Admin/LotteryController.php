@@ -35,14 +35,26 @@ class LotteryController extends Controller
 
     public function create()
     {
-        return view('admin.lotteries.create');
+        $users = $this->lotteryRepository->existsUsers();
+
+        $result = $users == 0 ? false : true;
+
+        return view('admin.lotteries.create',compact('result'));
     }
 
     public function store(LotteryRequest $request)
     {
         try {
+            $users = $this->lotteryRepository->existsUsers();
+
+            if ($users == 0) {
+                newFeedback('پیام', 'کاربر جدیدی برای شرکت در قرعه کشی نداریم', 'warning');
+                return redirect()->route('lotteries.create');
+            }
+
             $code = $this->lotteryCodeService->generate();
             $user_id = $this->lotteryUserService->generate();
+
             $lottery = $this->lotteryRepository->store($code, $user_id);
             $token = Crypt::encryptString($lottery['code']);
             newFeedback();

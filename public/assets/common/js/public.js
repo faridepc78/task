@@ -1,48 +1,5 @@
-function validateCkeditor(text_field, text_error) {
-    CKEDITOR.replace(text_field);
-    var length = CKEDITOR.instances[text_field].getData().replace(/<[^>]*>/gi, '').length;
-    if (!length) {
-        toastr['info'](text_error, 'پیام');
-        return false;
-    } else {
-        return true;
-    }
-}
-
 function removeSpaces(string) {
     return string.trimStart();
-}
-
-function separateNum(value, input) {
-    /* seprate number input 3 number */
-    var nStr = value + '';
-    nStr = nStr.replace(/\,/g, "");
-    x = nStr.split('.');
-    x1 = x[0];
-    x2 = x.length > 1 ? '.' + x[1] : '';
-    var rgx = /(\d+)(\d{3})/;
-    while (rgx.test(x1)) {
-        x1 = x1.replace(rgx, '$1' + ',' + '$2');
-    }
-    if (input !== undefined) {
-
-        input.value = x1 + x2;
-    } else {
-        return x1 + x2;
-    }
-}
-
-function changeStyleType(id) {
-
-    id.keyup(function () {
-        var id_value = id.val().length;
-
-        if (id_value != 0) {
-            id.css('direction','ltr');
-        } else {
-            id.css('direction','rtl');
-        }
-    });
 }
 
 function removeURLParameter(url, parameter) {

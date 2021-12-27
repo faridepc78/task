@@ -69,4 +69,15 @@ function getGravatar($email, $s = 80, $d = 'mm', $r = 'g', $img = false, $atts =
     return $url;
 }
 
+function make_token($count): string
+{
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $randomString = '';
+    for ($i = 0; $i < $count; $i++) {
+        $index = rand(0, strlen($characters) - 1);
+        $randomString .= $characters[$index];
+    }
+    return $randomString;
+}
+
 ?>
